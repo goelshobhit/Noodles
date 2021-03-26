@@ -4,6 +4,15 @@
  *
  */
 
-import loadable from 'utils/loadable';
+import React from 'react';
+import Loadable from 'react-loadable';
+import LoadableLoading from 'components/Loader';
 
-export default loadable(() => import('./index'));
+export default Loadable({
+  loader: () => import('./index'),
+  loading: () => <LoadableLoading />,
+  render: (loaded, props) => {
+    const Component = loaded.default;
+    return <Component {...props} />;
+  },
+});
