@@ -1,22 +1,59 @@
-/*
- * HomePage
+/**
  *
- * This is the first thing users see of our App, at the '/' route
+ * HomePage
  *
  */
 
-import React from 'react';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
 
-import { Button } from 'antd';
-
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+import makeSelectHomePage from './selectors';
+import reducer from './reducer';
+import saga from './saga';
 import messages from './messages';
 
-export default function HomePage() {
+export function HomePage() {
+  useInjectReducer({ key: 'homePage', reducer });
+  useInjectSaga({ key: 'homePage', saga });
+
   return (
-    <h1>
-      <Button type="primary"> My Button </Button>
+    <div>
+      <Helmet>
+        <title>HomePage</title>
+        <meta name="description" content="Description of HomePage" />
+      </Helmet>
       <FormattedMessage {...messages.header} />
-    </h1>
+    </div>
   );
 }
+
+HomePage.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = createStructuredSelector({
+  homePage: makeSelectHomePage(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(HomePage);
