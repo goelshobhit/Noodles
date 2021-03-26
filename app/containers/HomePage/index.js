@@ -15,6 +15,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
 import Grid from 'components/Grid';
+import Filters from 'components/Filters';
 
 import { makeSelectHomePage, makeSelectRestaurants } from './selectors';
 import reducer from './reducer';
@@ -40,6 +41,11 @@ export function HomePage({ handleGetData, restaurants }) {
         <title>HomePage</title>
         <meta name="description" content="Description of HomePage" />
       </Helmet>
+      <Filters
+        restaurantData={restaurantData}
+        setRestaurantData={setRestaurantData}
+        restaurants={restaurants}
+      />
       <Grid restaurantData={restaurantData} />
     </div>
   );

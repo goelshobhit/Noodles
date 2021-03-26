@@ -8,7 +8,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
-import { Row, Col, Card } from 'antd';
+import { Row, Col, Card, Button } from 'antd';
 import map from 'lodash/map';
 
 import history from 'utils/history';
@@ -31,8 +31,9 @@ function Grid({ restaurantData }) {
             cover={<Image image={{ alt: 'demo', src: item.Image }} />}
             title={item.Brand}
             onClick={() => {
-              history.push(`/restaurants/${item.Brand}`, item);
+              history.push(`/restaurant/${item.Brand}`, item);
             }}
+            actions={[<Button type="primary">{item['Top Ten']}</Button>]}
           />
         </Col>
       ))}
