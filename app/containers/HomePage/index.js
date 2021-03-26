@@ -7,11 +7,15 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
+import { Button } from 'antd';
+
 import messages from './messages';
 
 export default function HomePage() {
   return (
     <h1>
+      <Button type="primary"> My Button </Button>
       <FormattedMessage {...messages.header} />
     </h1>
   );

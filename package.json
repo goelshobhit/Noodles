@@ -78,6 +78,8 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
+    "less": "^4.0.0",
+    "less-loader": "^7.2.1",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
     "prop-types": "15.7.2",
@@ -91,6 +93,7 @@
     "redux-saga": "1.0.2",
     "reselect": "4.0.0",
     "sanitize.css": "8.0.0",
+    "sass-loader": "^11.0.1",
     "styled-components": "4.2.0"
   },
   "devDependencies": {
