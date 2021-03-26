@@ -14,9 +14,11 @@ function Image({ image }) {
   return (
     <div>
       <LazyLoadImage
+        height={image.height || '100%'}
+        width="100%"
         delayMethod="debounce"
-        delayTime={100}
-        threshold={20}
+        delayTime={1000}
+        threshold={1000}
         useIntersectionObserver
         visibleByDefault
         effect="black-and-white"

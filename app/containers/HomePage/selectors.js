@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import mappedResData from 'utils/restaurantMap';
 import { initialState } from './reducer';
 
 /**
@@ -21,5 +22,25 @@ const makeSelectHomePage = () =>
     substate => substate,
   );
 
+const makeSelectImages = () =>
+  createSelector(
+    selectHomePageDomain,
+    substate => substate.images,
+  );
+
+const makeSelectRestaurants = () =>
+  createSelector(
+    selectHomePageDomain,
+    substate => {
+      const { images, restaurants } = substate;
+      return mappedResData(images, restaurants);
+    },
+  );
+
 export default makeSelectHomePage;
-export { selectHomePageDomain };
+export {
+  selectHomePageDomain,
+  makeSelectHomePage,
+  makeSelectImages,
+  makeSelectRestaurants,
+};
