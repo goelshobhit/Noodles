@@ -7,10 +7,10 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.response.use(
-  response => response,
+  response => response.data,
   err => {
     notification.error({
-      description: err,
+      description: err.toJSON().message,
     });
 
     return Promise.reject(err);
